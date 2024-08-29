@@ -209,65 +209,6 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import 'package:flutter/material.dart';
 // import 'package:google_generative_ai/google_generative_ai.dart';
 // import 'package:pdf/pdf.dart';
@@ -599,36 +540,6 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:pdf/pdf.dart';
@@ -641,10 +552,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -653,19 +566,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         hintColor: Colors.amberAccent,
         fontFamily: 'Roboto',
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
           displayMedium: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
           bodyLarge: TextStyle(fontSize: 16.0),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: ResumeMaker(),
+      home: const ResumeMaker(),
     );
   }
 }
 
 class ResumeMaker extends StatefulWidget {
+  const ResumeMaker({super.key});
+
   @override
   _ResumeMakerState createState() => _ResumeMakerState();
 }
@@ -732,15 +647,15 @@ class _ResumeMakerState extends State<ResumeMaker> {
         title: Text(title),
         content: TextField(
           onChanged: (value) => input = value,
-          decoration: InputDecoration(hintText: "Enter your input here"),
+          decoration: const InputDecoration(hintText: "Enter your input here"),
         ),
         actions: [
           TextButton(
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
             onPressed: () => Navigator.pop(context),
           ),
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () => Navigator.pop(context, input),
           ),
         ],
@@ -753,7 +668,7 @@ class _ResumeMakerState extends State<ResumeMaker> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => Scaffold(
-          appBar: AppBar(title: Text('Resume Preview')),
+          appBar: AppBar(title: const Text('Resume Preview')),
           body: PdfPreview(
             build: (format) => pdf.save(),
           ),
@@ -775,7 +690,7 @@ class _ResumeMakerState extends State<ResumeMaker> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Permission denied to save PDF')),
+        const SnackBar(content: Text('Permission denied to save PDF')),
       );
     }
   }
@@ -788,7 +703,7 @@ class _ResumeMakerState extends State<ResumeMaker> {
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        margin: pw.EdgeInsets.all(32),
+        margin: const pw.EdgeInsets.all(32),
         build: (pw.Context context) {
           return [
             pw.Header(
@@ -842,7 +757,7 @@ class _ResumeMakerState extends State<ResumeMaker> {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           filled: true,
           fillColor: Colors.grey[200],
         ),
@@ -855,16 +770,16 @@ class _ResumeMakerState extends State<ResumeMaker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Advanced Resume Maker'),
+        title: const Text('Advanced Resume Maker'),
         actions: [
           IconButton(
-            icon: Icon(Icons.info_outline),
+            icon: const Icon(Icons.info_outline),
             onPressed: () => _showInfoDialog(context),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -874,46 +789,46 @@ class _ResumeMakerState extends State<ResumeMaker> {
             _buildTextField(_linkedinController, 'LinkedIn Profile URL'),
             _buildTextField(_githubController, 'GitHub Profile URL'),
             _buildTextField(_portfolioController, 'Portfolio Website URL'),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Professional Summary', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_summaryController, 'Summary', maxLines: 5),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Experience', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_experienceController, 'Work Experience', maxLines: 10),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Education', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_educationController, 'Education', maxLines: 5),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Skills', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_skillsController, 'Skills', maxLines: 5),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Projects', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_projectsController, 'Projects', maxLines: 10),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Awards and Achievements', style: Theme.of(context).textTheme.titleLarge),
             _buildTextField(_awardsController, 'Awards', maxLines: 5),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: Wrap(
                 spacing: 10,
                 runSpacing: 10,
                 children: [
                   ElevatedButton.icon(
-                    icon: Icon(Icons.auto_awesome),
-                    label: Text('Enhance with AI'),
+                    icon: const Icon(Icons.auto_awesome),
+                    label: const Text('Enhance with AI'),
                     onPressed: _isLoading ? null : _enhanceWithAI,
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black, backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   ElevatedButton.icon(
-                    icon: Icon(Icons.preview),
-                    label: Text('Preview Resume'),
+                    icon: const Icon(Icons.preview),
+                    label: const Text('Preview Resume'),
                     onPressed: _previewPdf,
                   ),
                   ElevatedButton.icon(
-                    icon: Icon(Icons.download),
-                    label: Text('Download Resume'),
+                    icon: const Icon(Icons.download),
+                    label: const Text('Download Resume'),
                     onPressed: _downloadPdf,
                   ),
                 ],
@@ -930,13 +845,13 @@ class _ResumeMakerState extends State<ResumeMaker> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('About Advanced Resume Maker'),
+          title: const Text('About Advanced Resume Maker'),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                MarkdownBody(
+                const MarkdownBody(
                   data: '''
 # Advanced Resume Maker
 
@@ -956,9 +871,9 @@ Version: 1.1.0
                   ''',
                   selectable: true,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
-                  child: Text('View on GitHub'),
+                  child: const Text('View on GitHub'),
                   onPressed: () => launch('https://github.com/yourusername/advanced-resume-maker'),
                 ),
               ],
@@ -966,7 +881,7 @@ Version: 1.1.0
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Close'),
+              child: const Text('Close'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -977,3 +892,20 @@ Version: 1.1.0
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
